@@ -143,30 +143,48 @@ export function DeckViewer({ deckId }: { deckId: string }) {
       ) : null}
 
       {deck.status === "COMPLETE" && deck.slides.length > 0 ? (
-        <div className="space-y-3">
-          <p className="text-sm text-muted-foreground">
-            Slide {currentSlide + 1} of {deck.slides.length}
-          </p>
-          <Carousel setApi={setCarouselApi} className="mx-auto w-full max-w-3xl px-12">
+        <div className="space-y-4">
+          <div className="flex items-center justify-between text-sm text-muted-foreground px-1">
+            <span>
+              Slide <strong className="font-semibold text-foreground">{currentSlide + 1}</strong> of{" "}
+              {deck.slides.length}
+            </span>
+            <span className="text-xs">Use arrows or drag to navigate</span>
+          </div>
+
+          <Carousel setApi={setCarouselApi} className="mx-auto w-full max-w-5xl px-12">
             <CarouselContent>
               {deck.slides.map((slide) => (
                 <CarouselItem key={slide.id}>
-                  <article className="overflow-hidden rounded-2xl border bg-card ring-1 ring-foreground/10">
-                    {slide.imageUrl ? (
-                      <img
-                        src={slide.imageUrl}
-                        alt={slide.title}
-                        className="aspect-video w-full object-cover"
-                      />
-                    ) : null}
-                    <div className="space-y-3 p-6">
-                      <h2 className="font-heading text-xl font-semibold">
-                        {slide.title}
-                      </h2>
-                      <p className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-                        {slide.content}
-                      </p>
+                  <article className="group relative flex w-full flex-col md:flex-row items-stretch justify-between gap-6 md:gap-8 overflow-hidden rounded-2xl border bg-card p-6 md:p-8 shadow-sm ring-1 ring-foreground/5 aspect-auto md:aspect-[16/9] min-h-[400px] md:min-h-[420px]">
+                    {/* Left Column: Slide Number, Title, Content */}
+                    <div className="flex flex-1 flex-col justify-between space-y-4 overflow-y-auto pr-1">
+                      <div className="space-y-3">
+                        <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                          <span className="flex size-5 items-center justify-center rounded-full bg-primary/10 text-primary text-[11px] font-bold">
+                            {slide.order}
+                          </span>
+                          Slide {slide.order}
+                        </div>
+                        <h2 className="font-heading text-xl md:text-2xl font-bold tracking-tight text-card-foreground">
+                          {slide.title}
+                        </h2>
+                        <p className="whitespace-pre-line text-sm md:text-base leading-relaxed text-muted-foreground font-normal">
+                          {slide.content}
+                        </p>
+                      </div>
                     </div>
+
+                    {/* Right Column: Visual / Image Container */}
+                    {slide.imageUrl ? (
+                      <div className="relative w-full md:w-[45%] shrink-0 min-h-[200px] md:min-h-0 aspect-video md:aspect-auto overflow-hidden rounded-xl border border-border/60 bg-muted/50">
+                        <img
+                          src={slide.imageUrl}
+                          alt={slide.title}
+                          className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                    ) : null}
                   </article>
                 </CarouselItem>
               ))}

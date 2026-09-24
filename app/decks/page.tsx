@@ -39,7 +39,7 @@ export default async function DecksPage() {
               All pitch decks you have generated
             </p>
           </div>
-          <Button render={<Link href="/" />}>New Deck</Button>
+          <Button nativeButton={false} render={<Link href="/" />}>New Deck</Button>
         </div>
 
         {decks.length === 0 ? (
@@ -51,7 +51,7 @@ export default async function DecksPage() {
               </EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
-              <Button render={<Link href="/" />}>Create a deck</Button>
+              <Button nativeButton={false} render={<Link href="/" />}>Create a deck</Button>
             </EmptyContent>
           </Empty>
         ) : (

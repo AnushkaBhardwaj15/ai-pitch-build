@@ -10,7 +10,7 @@ export function SiteHeader() {
           AI Pitch Deck
         </Link>
         <nav className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" render={<Link href="/decks" />}>
+          <Button variant="ghost" size="sm" nativeButton={false} render={<Link href="/decks" />}>
             My Decks
           </Button>
         </nav>

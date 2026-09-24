@@ -15,7 +15,7 @@ export default async function DeckDetailPage({ params }: PageProps) {
     <>
       <SiteHeader />
       <main className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 px-4 py-12">
-        <Button variant="ghost" size="sm" className="w-fit" render={<Link href="/decks" />}>
+        <Button variant="ghost" size="sm" nativeButton={false} className="w-fit" render={<Link href="/decks" />}>
           ← Back to decks
         </Button>
         <DeckViewer deckId={id} />
