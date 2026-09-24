@@ -4,7 +4,7 @@ import { PitchDeckSchema } from "@/lib/schemas/pitch-deck";
 import {
   pitchDeckQualityGuardrail,
   validProjectIdeaGuardrail,
-} from "@/lib/agents/guardrails.ts";
+} from "@/lib/agents/guardrails";
 
 /** Instructions tell the agent exactly what slide structure to produce. */
 const PITCH_DECK_INSTRUCTIONS = `You write startup pitch decks for investors.
